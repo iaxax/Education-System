@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<script type="text/javascript" src="/static/jquery.min.js"></script>
+</head>
+	<h1>教务系统测试</h1>
+	<br/>
+	
+	<h2>所有课程信息</h2>
+	<p id="allCourse"></p>
+	<br />
+	
+	<h2>选课信息</h2>
+	<p id="course"></p>
+	<br />
+	
+	<h2>选课</h2>
+	<p id="select"></p>
+	<br />
+	
+	<h2>退课</h2>
+	<p id="quit"></p>
+	<br />
+<body>
+
+<script>
+	// 登录
+	$.ajax({
+		'url': '/login',
+		'method': 'post',
+		'data': {
+			'username': '141110001',
+			'password': 'test'
+		},
+		success: function(result) {
+			// 获取课程信息
+			$.ajax({
+				'url': '/getAllCourseInfo',
+				'method': 'get',
+				success: function(course) {
+					$('#allCourse').text(JSON.stringify(course));
+				}
+			});
+			
+			// 获取选课信息
+			$.ajax({
+				'url': '/getCourseInfo',
+				'method': 'get',
+				success: function(course) {
+					$('#course').text(JSON.stringify(course));
+				}
+			});
+			
+			// 选课
+			$.ajax({
+				'url': '/selectCourse',
+				'method': 'post',
+				'data': {'courseId': 1},
+				success: function(res) {
+					$('#select').text(JSON.stringify(res));
+				}
+			});
+			
+			// 退课
+			$.ajax({
+				'url': '/quitCourse',
+				'method': 'post',
+				'data': {'courseId': 1},
+				success: function(res) {
+					$('#quit').text(JSON.stringify(res));
+				}
+			});
+		}
+	});
+</script>
+
+</body>
+</html>
