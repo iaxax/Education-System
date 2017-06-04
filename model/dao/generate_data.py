@@ -94,27 +94,27 @@ for id in teacher_ids:
 if (len(resultList) == 0):
 	# 插入学生表信息
 	cursor.executemany("insert into student values( \
-		%d, %s, %d, %s, %s, %d, %s, %s, %s)", student_infos)
+		?, ?, ?, ?, ?, ?, ?, ?, ?)", student_infos)
 		
 	# 插入账号信息
 	cursor.executemany("insert into student_account values( \
-		%s, %s, %d)", student_accounts)
+		?, ?, ?)", student_accounts)
 		
 	# 插入教师信息
 	cursor.executemany("insert into teacher values( \
-		%d, %s, %d, %s, %s, %s)", teacher_infos)
+		?, ?, ?, ?, ?, ?)", teacher_infos)
 		
 	# 插入课程信息
 	cursor.executemany("insert into course values( \
-		%d, %s, %s, %s, %s, %s)", course_infos)
+		?, ?, ?, ?, ?, ?)", course_infos)
 	
 	# 插入选课信息
 	cursor.executemany("insert into selection values( \
-		%d, %d)", selection)
+		?, ?)", selection)
 		
 	# 插入授课信息
 	cursor.executemany("insert into teach values( \
-		%d, %d)", teach)
+		?, ?)", teach)
 	
 	conn.commit()
 	print 'done'

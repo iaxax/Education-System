@@ -1,6 +1,6 @@
 #encoding=utf-8
 
-import pymssql
+import sqlite3
 import config
 
 class Connection:
@@ -10,12 +10,7 @@ class Connection:
 	@staticmethod
 	def getConnection():
 		if (not Connection.__conn):
-			Connection.__conn = pymssql.connect( \
-				host=config.host, \
-				user=config.username, \
-				password=config.password, \
-				database=config.dbName, \
-				charset='utf8')
+			Connection.__conn = sqlite3.connect(config.db_path)
 				
 		return Connection.__conn
 				
