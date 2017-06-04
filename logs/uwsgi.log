@@ -1,0 +1,51 @@
+*** Starting uWSGI 2.0.15 (64bit) on [Sun Jun  4 11:51:03 2017] ***
+compiled with version: 4.8.5 20150623 (Red Hat 4.8.5-11) on 03 June 2017 11:43:55
+os: Linux-3.10.0-514.21.1.el7.x86_64 #1 SMP Thu May 25 17:04:51 UTC 2017
+nodename: VM_213_112_centos
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 1
+current working directory: /var/www/Education-System
+detected binary path: /usr/bin/uwsgi
+setgid() to 1000
+setuid() to 1000
+chdir() to /var/www/Education-System
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 3895
+your memory page size is 4096 bytes
+detected max file descriptor number: 100001
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address 127.0.0.1:8000 fd 3
+Python version: 2.7.5 (default, Nov  6 2016, 00:28:07)  [GCC 4.8.5 20150623 (Red Hat 4.8.5-11)]
+Python main interpreter initialized at 0x1c4ae00
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 103102464 bytes (100686 KB) for 10000 cores
+*** Operational MODE: threaded ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x1c4ae00 pid: 2096 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI worker 1 (and the only) (pid: 2096, cores: 10000)
+*** Starting uWSGI 2.0.15 (64bit) on [Sun Jun  4 11:53:47 2017] ***
+compiled with version: 4.8.5 20150623 (Red Hat 4.8.5-11) on 03 June 2017 11:43:55
+os: Linux-3.10.0-514.21.1.el7.x86_64 #1 SMP Thu May 25 17:04:51 UTC 2017
+nodename: VM_213_112_centos
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 1
+current working directory: /var/www/Education-System
+detected binary path: /usr/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /var/www/Education-System
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 3895
+your memory page size is 4096 bytes
+detected max file descriptor number: 100001
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+probably another instance of uWSGI is running on the same address (127.0.0.1:8000).
+bind(): Address already in use [core/socket.c line 769]

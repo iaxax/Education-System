@@ -10,7 +10,7 @@ class Connection:
 	@staticmethod
 	def getConnection():
 		if (not Connection.__conn):
-			Connection.__conn = sqlite3.connect(config.db_path)
+			Connection.__conn = sqlite3.connect(config.db_path, check_same_thread=False)
 				
 		return Connection.__conn
 				
