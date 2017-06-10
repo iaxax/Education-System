@@ -234,7 +234,7 @@
         success: function (Message) {
             alert(Message);
 
-            $.each(Message,function (i,n) {
+            $.each(Message.courses,function (i,n) {
                 var classinfo = "";
                 classinfo += "<tr><td>"+n["name"]+"</td>><td>"+n["classtime"]+"</td><td>"+n["classroom"]+"</td><td>"+n["department"]+"</td><td>"+n["course_id"]+"</td><td>"+n["type"]+"</td></tr>";
                 $('#class_body').append(classinfo);

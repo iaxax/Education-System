@@ -50,4 +50,26 @@
 
 </div>
 </body>
+<script>
+    $("#log_in").click(function () {
+        var name = document.getElementById("username").val();
+        var pass = document.getElementById("password").val();
+        $.ajax({
+            url: url,
+            type: "POST",
+            dataType: "json",
+            data:{"username": name,"password":pass},
+            success: function (Message) {
+                alert(Message);
+
+
+            },
+            error: function () {
+                alert("Error");
+            }
+        })
+
+    });
+
+</script>
 </html>
