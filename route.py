@@ -12,8 +12,8 @@ app = Flask(__name__)
 app.secret_key = 'whatisasecretkey'
 
 @app.route('/', methods=['GET'])
-def login():
-	return render_template('/login.html')
+def getLoginHTML():
+	return render_template('login.html')
 
 def isLogin():
 	return 'isLogin' in session and session['isLogin']
