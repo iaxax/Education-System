@@ -15,6 +15,22 @@ app.secret_key = 'whatisasecretkey'
 def getLoginHTML():
 	return render_template('login.html')
 
+@app.route('/quitPage', methods=['GET'])
+def getQuitCourseHTML():
+	return render_template('Drop.html')
+
+@app.route('/selectPage', methods=['GET'])
+def getSelectCourseHTML():
+	return render_template('Choose.html')
+
+@app.route('/home', methods=['GET'])
+def getHomeHTML():
+	return render_template('index.html')
+
+@app.route('/showPage', methods=['GET'])
+def getCourseInfoHTML():
+	return render_template('MyClass.html')
+
 def isLogin():
 	return 'isLogin' in session and session['isLogin']
 	
