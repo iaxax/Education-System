@@ -36,9 +36,9 @@ class CourseDAO:
 			sql = "insert into selection values(%d, %d)"%(student_id, course_id)
 			cursor.execute(sql)
 			conn.commit()
-			return (True, u"成功选择该课程")
+			return ('1', u"成功选择该课程")
 		else:
-			return (False, u"已经选过该课程")
+			return ('0', u"已经选过该课程")
 	
 	# 退课
 	@staticmethod
@@ -54,7 +54,7 @@ class CourseDAO:
 				where student_id=%d and course_id=%d"%(student_id, course_id)
 			cursor.execute(sql)
 			conn.commit()
-			return (True, u"成功退选该课程")
+			return ('1', u"成功退选该课程")
 		else:
-			return (False, u"没有选择该课程")
+			return ('0', u"没有选择该课程")
 

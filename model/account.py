@@ -9,6 +9,6 @@ class AccountService:
 	@staticmethod
 	def login(username, password):
 		if (AccountDAO.isAccountValid(username, password)):
-			return {"success":True, "message": u"登录成功"}
+			return {"success": '1', "message": u"登录成功"}
 		else:
-			return {"success":False, "message": u"账号与密码不匹配"}
+			return {"success": '0', "message": u"账号与密码不匹配"}

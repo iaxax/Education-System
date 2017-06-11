@@ -6,7 +6,7 @@ from flask import session
 from flask import render_template
 from model.account import AccountService
 from model.course import CourseService
-import json
+from model import xmlutil
 
 app = Flask(__name__)
 app.secret_key = 'whatisasecretkey'
@@ -60,7 +60,7 @@ def login():
 		session['isLogin'] = False
 		session['username'] = None
 		
-	return json.dumps(loginResult, ensure_ascii=False)
+	return xmlutil.loginResultToXml(loginResult)
 
 # 登出
 # 设置会话相关属性
@@ -78,7 +78,7 @@ def logout():
 # 返回获取结果，提示信息和课程列表
 @app.route('/getAllCourseInfo', methods=['GET'])
 def getAllCourseInfo():
-	return json.dumps(CourseService.getAllCourseInfo(), ensure_ascii=False)
+	return xmlutil.courseResultToXml(CourseService.getAllCourseInfo())
 
 
 # 获取学生的所选课程
@@ -86,9 +86,9 @@ def getAllCourseInfo():
 @app.route('/getCourseInfo', methods=['GET'])
 def getCourseInfo():
 	if (not isLogin()):
-		return json.dumps(CourseService.getNotLoginResult())
+		return xmlutil.loginResultToXml(CourseService.getNotLoginResult())
 	
-	return json.dumps(CourseService.getCourseInfo(session['username']), ensure_ascii=False)
+	return xmlutil.courseResultToXml(CourseService.getCourseInfo(session['username']))
 
 	
 # 选课
@@ -97,11 +97,11 @@ def getCourseInfo():
 @app.route('/selectCourse', methods=['POST'])
 def selectCourse():
 	if (not isLogin()):
-		return json.dumps(CourseService.getNotLoginResult())
+		return xmlutil.loginResultToXml(CourseService.getNotLoginResult())
 	
 	courseId = request.form['courseId']
 	username = session['username']
-	return json.dumps(CourseService.selectCourse(username, int(courseId)), ensure_ascii=False)
+	return xmlutil.loginResultToXml(CourseService.selectCourse(username, int(courseId)))
 	
 	
 # 退课
@@ -110,11 +110,11 @@ def selectCourse():
 @app.route('/quitCourse', methods=['POST'])
 def quitCourse():
 	if (not isLogin()):
-		return json.dumps(CourseService.getNotLoginResult())
+		return xmlutil.loginResultToXml(CourseService.getNotLoginResult())
 	
 	courseId = request.form['courseId']
 	username = session['username']
-	return json.dumps(CourseService.quitCourse(username, int(courseId)), ensure_ascii=False)
+	return xmlutil.loginResultToXml(CourseService.quitCourse(username, int(courseId)))
 
 # -----------------------------数据集成之前的接口(END)--------------------------------
 
@@ -124,7 +124,7 @@ def quitCourse():
 # 返回获取结果，提示信息和课程列表
 @app.route('/igetAllCourseInfo', methods=['GET'])
 def igetAllCourseInfo():
-	return json.dumps(CourseService.igetAllCourseInfo(), ensure_ascii=False)
+	return xmlutil.icourseResultToXml(CourseService.igetAllCourseInfo())
 
 
 # 获取学生的所选课程
@@ -132,9 +132,9 @@ def igetAllCourseInfo():
 @app.route('/igetCourseInfo', methods=['GET'])
 def igetCourseInfo():
 	if (not isLogin()):
-		return json.dumps(CourseService.getNotLoginResult())
+		return xmlutil.loginResultToXml(CourseService.getNotLoginResult())
 	
-	return json.dumps(CourseService.igetCourseInfo(session['username']), ensure_ascii=False)
+	return xmlutil.icourseResultToXml(CourseService.igetCourseInfo(session['username']))
 
 	
 # 选课
@@ -143,12 +143,12 @@ def igetCourseInfo():
 @app.route('/iselectCourse', methods=['POST'])
 def iselectCourse():
 	if (not isLogin()):
-		return json.dumps(CourseService.getNotLoginResult())
+		return xmlutil.loginResultToXml(CourseService.getNotLoginResult())
 	
 	courseId = request.form['courseId']
 	username = session['username']
 	courdeDept = request.form['courseDept']
-	return json.dumps(CourseService.iselectCourse(username, int(courseId), int(courseDept)), ensure_ascii=False)
+	return xmlutil.loginResultToXml(CourseService.iselectCourse(username, int(courseId), int(courseDept)))
 	
 	
 # 退课
@@ -157,12 +157,12 @@ def iselectCourse():
 @app.route('/iquitCourse', methods=['POST'])
 def iquitCourse():
 	if (not isLogin()):
-		return json.dumps(CourseService.getNotLoginResult())
+		return xmlutil.loginResultToXml(CourseService.getNotLoginResult())
 	
 	courseId = request.form['courseId']
 	username = session['username']
 	courseDept = request.form['courseDept']
-	return json.dumps(CourseService.iquitCourse(username, int(courseId), int(courseDept)), ensure_ascii=False)
+	return xmlutil.icourseResultToXml(CourseService.iquitCourse(username, int(courseId), int(courseDept)))
 
 # ------------------------------数据集成之后的接口(END)--------------------------------
 
