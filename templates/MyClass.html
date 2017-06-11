@@ -73,7 +73,7 @@
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="profile-ava">
-                                <img alt="" src="img/avatar1_small.jpg">
+                                <img alt="" src="/static/img/avatar1_small.jpg">
                             </span>
                         <span class="username">Jenifer Smith</span>
                         <b class="caret"></b>
@@ -82,7 +82,7 @@
                         <div class="log-arrow-up"></div>
 
                         <li>
-                            <a href="login.html"><i class="icon_key_alt"></i> Log Out</a>
+                            <a href="/"><i class="icon_key_alt"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -98,7 +98,7 @@
             <!-- sidebar menu start-->
             <ul class="sidebar-menu">
                 <li class="sub-menu">
-                    <a class="" href="index.html">
+                    <a class="" href="/home">
                         <i class="icon_house_alt"></i>
                         <span>Main Page</span>
                     </a>
@@ -110,8 +110,8 @@
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" href="#">My Class</a></li>
-                        <li><a class="" href="Drop.html">Drop Class</a></li>
+                        <li><a class="" href="/showPage">My Class</a></li>
+                        <li><a class="" href="/quitPage">Drop Class</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -121,7 +121,7 @@
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" href="Choose.html">Choose Class</a></li>
+                        <li><a class="" href="/selectPage">Choose Class</a></li>
                     </ul>
                 </li>
 
@@ -139,7 +139,7 @@
                 <div class="col-lg-12">
                     <h3 class="page-header"><i class="fa fa-table"></i> MyInfo</h3>
                     <ol class="breadcrumb">
-                        <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
+                        <li><i class="fa fa-home"></i><a href="/home">Home</a></li>
                         <li><i class="fa fa-table"></i>MyInfo</li>
                         <li><i class="fa fa-th-list"></i>MyClass</li>
                     </ol>
@@ -163,7 +163,7 @@
                                 <th><i class="icon_mobile"></i> course_id</th>
                                 <th><i class="icon_cogs"></i> type</th>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td>Mario Norris</td>
                                 <td>2010-02-08</td>
                                 <td>mildred@hour.info</td>
@@ -176,7 +176,7 @@
                                         <a class="btn btn-danger" href="#"><i class="icon_close_alt2"></i></a>
                                     </div>
                                 </td>
-                            </tr>
+                            </tr> -->
                             </tbody>
                         </table>
                     </section>
@@ -233,7 +233,7 @@
         type: "GET",
         dataType: "json",
         success: function (Message) {
-            alert(Message);
+            alert(Message.message);
 
             $.each(Message.courses,function (i,n) {
                 var classinfo = "";

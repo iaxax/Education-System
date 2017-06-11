@@ -73,7 +73,7 @@
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="profile-ava">
-                                <img alt="" src="img/avatar1_small.jpg">
+                                <img alt="" src="/static/img/avatar1_small.jpg">
                             </span>
                         <span class="username">Jenifer Smith</span>
                         <b class="caret"></b>
@@ -82,7 +82,7 @@
                         <div class="log-arrow-up"></div>
 
                         <li>
-                            <a href="login.html"><i class="icon_key_alt"></i> Log Out</a>
+                            <a href="/"><i class="icon_key_alt"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -98,7 +98,7 @@
             <!-- sidebar menu start-->
             <ul class="sidebar-menu">
                 <li class="sub-menu">
-                    <a class="" href="index.html">
+                    <a class="" href="/home">
                         <i class="icon_house_alt"></i>
                         <span>Main Page</span>
                     </a>
@@ -110,8 +110,8 @@
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" href="MyClass.html">My Class</a></li>
-                        <li><a class="" href="Drop.html">Drop Class</a></li>
+                        <li><a class="" href="/showPage">My Class</a></li>
+                        <li><a class="" href="/quitPage">Drop Class</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -121,7 +121,7 @@
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" href="Choose.html">Choose Class</a></li>
+                        <li><a class="" href="/selectPage">Choose Class</a></li>
                     </ul>
                 </li>
 
@@ -164,7 +164,7 @@
                                 <th><i class="icon_cogs"></i> type</th>
                                 <th>action</th>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td>Mario Norris</td>
                                 <td>2010-02-08</td>
                                 <td>mildred@hour.info</td>
@@ -176,7 +176,7 @@
                                         <a class="btn btn-primary" href="Choose.html"><i class="icon_plus_alt2"></i></a>
                                     </div>
                                 </td>
-                            </tr>
+                            </tr> -->
                             </tbody>
                         </table>
                     </section>
@@ -234,41 +234,64 @@
         type: "GET",
         dataType: "json",
         success: function (Message) {
-            alert(Message);
+            alert(Message.message);
 
             $.each(Message.courses,function (i,n) {
                 var classinfo = "";
-                classinfo += "<tr><td>"+n["name"]+"</td>><td>"+n["classtime"]+"</td><td>"+n["classroom"]+"</td><td>"+n["department"]+"</td><td id=\""+number+"\">"+n["course_id"]+"</td><td>"+n["type"]+"</td><td><div class=\"btn-group\"><a class=\"btn btn-primary\" href=\"#\" id=\""+number+"a\"><i class=\"icon_plus_alt2\"></i></a></div></td></tr>";
+                classinfo += "<tr><td>"+n["name"]+"</td>><td>"+n["classtime"]+"</td><td>"+n["classroom"]+"</td><td>"+n["department"]+"</td><td id=\""+number+"\">"+n["course_id"]+"</td><td>"+n["type"]+"</td><td><div class=\"btn-group\"><a class=\"btn btn-primary\" href=\"#\" onclick=\"choose(\'"+number+"\')\"><i class=\"icon_plus_alt2\"></i></a></div></td></tr>";
                 $('#class_body').append(classinfo);
                 number = number+1;
             })
-
         },
         error: function () {
             alert("Error");
         }
     });
 
-    var i ;
-    for(i=1;i<number;i++){
-        $("#"+i+"a").click(function () {
-            var url1 = "/selectCourse";
-            var text = document.getElementById(i+"").innerHTML;
-            $.ajax({
-                url : url1,
-                type : "POST",
-                dataType : "json",
-                data:{"courseId": text},
-                success : function(Message){
-                    alert(Message);
+    function refresh(){
+      window.location.reload();//刷新当前页面.
+    }
 
+    // var i ;
+    // for(i=1;i<number;i++){
+    //     $("#"+i+"a").click(function () {
+    //         var url1 = "/selectCourse";
+    //         var text = document.getElementById(i+"").innerHTML;
+    //         $.ajax({
+    //             url : url1,
+    //             type : "POST",
+    //             dataType : "json",
+    //             data:{"courseId": text},
+    //             success : function(Message){
+    //                 alert(Message);
+    //
+    //
+    //             },
+    //             error : function(){
+    //                 alert("Error");
+    //             }
+    //         })
+    //     });
+    // }
 
-                },
-                error : function(){
-                    alert("Error");
-                }
-            })
-        });
+    function choose(str){
+      var url1 = "/selectCourse";
+      var idnum = str;
+      var text = document.getElementById(idnum).innerHTML;
+      $.ajax({
+                  url : url1,
+                  type : "POST",
+                  dataType : "json",
+                  data:{"courseId": text},
+                  success : function(Message){
+                      alert(Message.message);
+
+                      refresh();
+                  },
+                  error : function(){
+                      alert("Error");
+                  }
+              })
 
     }
 
