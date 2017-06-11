@@ -3,7 +3,7 @@
 from conn import Connection
 
 class CourseDAO:
-	
+
 	# 获取课程信息
 	@staticmethod
 	def getAllCourseInfo():
@@ -11,9 +11,7 @@ class CourseDAO:
 		cursor = conn.cursor()
 		sql = "select * from course"
 		cursor.execute(sql)
-		
-		resultList = cursor.fetchall()
-		return resultList
+		return cursor.fetchall()
 	
 	# 获取选课信息
 	@staticmethod
