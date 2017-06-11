@@ -30,7 +30,7 @@ class NetCourse:
     def selectCourse(studentId, studentDept, courseId, courseDept):
         data = {
                 'studentid': studentId, 'studentInstitution': studentDept,
-                'courseid', courseId, 'courseInstitution': courseDept
+                'courseid': courseId, 'courseInstitution': courseDept
         }
         selectResultXml = post(selectUrl, data)
         return xmlToResultInfo(selectResultXml)
