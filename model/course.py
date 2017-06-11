@@ -13,7 +13,7 @@ class CourseService:
 	@staticmethod
 	def __toCourseDict(courses):
 		result = []
-		for (id, name, addr, time, type, dept) in newCourses:
+		for (id, name, addr, time, type, dept) in courses:
 			result.append({
 				'course_id': id, 'name':name,
 				'classroom': addr, 'classtime': time,
@@ -32,7 +32,7 @@ class CourseService:
 		info = CourseDAO.getAllCourseInfo()
 		return {
 			'success':True, 'message':u'获取课程信息成功',
-			'courses':CourseService.__toCourseDict(info.append(info))
+			'courses':CourseService.__toCourseDict(info)
 		}
 		
 	# 获取选课信息
@@ -81,10 +81,10 @@ class CourseService:
 	def igetAllCourseInfo():
 		info = CourseDAO.getAllCourseInfo()
 		otherInfo = netcourse.getAllCourseInfo(__DEPARTMENT_ID)
-		all = info.append(otherInfo)
+		info.extend(otherInfo)
 		return {
 			'success':True, 'message':u'获取课程信息成功',
-			'courses':CourseService.__itoCourseDict(info.append(all))
+			'courses':CourseService.__itoCourseDict(info)
 		}
 		
 	# 获取选课信息
@@ -93,10 +93,10 @@ class CourseService:
 		id = AccountDAO.getStudentIdByUserName(username)
 		info = CourseDAO.getCourseInfo(id)
 		otherInfo = netcourse.getSelectCourseInfo(id, __DEPARTMENT_ID)
-		all = info.append(otherInfo)
+		info.extend(otherInfo)
 		return {
 			'success':True, 'message':u'获取选课信息成功',
-			'courses':CourseService.__itoCourseDict(all)
+			'courses':CourseService.__itoCourseDict(info)
 		}
 	
 	# 选课
