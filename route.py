@@ -124,7 +124,7 @@ def quitCourse():
 @app.route('/getCourseByIds', methods=['POST'])
 def igetCourseByIds():
 	idStr = request.form['courseIds']
-	return xmlutil.icourseResultToXml(CourseService.igetCourseInfoByIds(ids))
+	return xmlutil.icourseResultToXml(CourseService.igetCourseInfoByIds(idStr.split('.')))
 
 # 获取课程信息
 # 返回获取结果，提示信息和课程列表
