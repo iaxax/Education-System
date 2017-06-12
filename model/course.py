@@ -79,7 +79,7 @@ class CourseService:
 	def igetCourseInfoByIds(ids):
 		courseList = []
 		for id in ids:
-			courseList.extend(CourseDAO.getCourseInfoById(id))
+			courseList.extend(CourseDAO.getCourseInfoById(int(id)))
 		return {
 			'success': '1', 'message':u'获取课程信息成功',
 			'courses': CourseService.__itoCourseDict(courseList)
