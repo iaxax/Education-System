@@ -4,6 +4,15 @@ from conn import Connection
 
 class CourseDAO:
 
+	# 根据课程ID获取课程信息
+	@staticmethod
+	def getCourseInfoById(id):
+		conn = Connection.getConnection()
+		cursor = conn.cursor()
+		sql = "select * from course where course_id = %d"%(id)
+		cursor.execute(sql)
+		return cursor.fetchall()
+
 	# 获取课程信息
 	@staticmethod
 	def getAllCourseInfo():

@@ -120,6 +120,12 @@ def quitCourse():
 
 # -----------------------------数据集成之后的接口(BEGIN)------------------------------
 
+# 根据ID列表获取相应课程信息
+@app.route('/getCourseByIds', methods=['POST'])
+def igetCourseByIds():
+	idStr = request.form['courseIds']
+	return xmlutil.icourseResultToXml(CourseService.igetCourseInfoByIds(ids))
+
 # 获取课程信息
 # 返回获取结果，提示信息和课程列表
 @app.route('/igetAllCourseInfo', methods=['GET', 'POST'])

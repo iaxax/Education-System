@@ -57,9 +57,9 @@ class CourseService:
 		result = CourseDAO.quitCourse(id, courseId)
 		return {'success':result[0], 'message':result[1]}
 		
-# ------------------------------数据集成之后的处理逻辑(BEGIN)------------------------------------
+	# ------------------------------数据集成之后的处理逻辑(BEGIN)------------------------------------
 
-# 将课程列表转换成字典
+	# 将课程列表转换成字典
 	@staticmethod
 	def __itoCourseDict(courses):
 		newCourses = map(lambda x : (__DEPARTMENT_ID,) + x , courses)
@@ -74,7 +74,18 @@ class CourseService:
 			})
 		return result
 
-# 获取所有的课程信息
+	# 根据ID列表获取相应课程
+	@staticmethod
+	def igetCourseInfoByIds(ids):
+		courseList = []
+		for id in ids:
+			courseList.extend(CourseDAO.getCourseInfoById(id))
+		return {
+			'success': '1', 'message':u'获取课程信息成功',
+			'courses': CourseService.__itoCourseDict(courseList)
+		}
+
+	# 获取所有的课程信息
 	@staticmethod
 	def igetAllCourseInfo():
 		info = CourseDAO.getAllCourseInfo()
@@ -125,4 +136,4 @@ class CourseService:
 			
 		return {'success': result[0], 'message':result[1]}
 
-# ------------------------------数据集成之后的处理逻辑(END)---------------------------------------
+	# ------------------------------数据集成之后的处理逻辑(END)---------------------------------------
