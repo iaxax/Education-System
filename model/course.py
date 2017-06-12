@@ -62,7 +62,7 @@ class CourseService:
 	# 将课程列表转换成字典
 	@staticmethod
 	def __itoCourseDict(courses):
-		newCourses = map(lambda x : (__DEPARTMENT_ID,) + x , courses)
+		newCourses = map(lambda x : (CourseService.__DEPARTMENT_ID,) + x , courses)
 		result = []
 
 		for (deptId, id, name, addr, time, classtype, dept) in newCourses:
@@ -89,7 +89,7 @@ class CourseService:
 	@staticmethod
 	def igetAllCourseInfo():
 		info = CourseDAO.getAllCourseInfo()
-		otherInfo = netcourse.getAllCourseInfo(__DEPARTMENT_ID)
+		otherInfo = netcourse.getAllCourseInfo(CourseService.__DEPARTMENT_ID)
 		info.extend(otherInfo)
 
 		return {
@@ -102,7 +102,7 @@ class CourseService:
 	def igetCourseInfo(username):
 		id = AccountDAO.getStudentIdByUserName(username)
 		info = CourseDAO.getCourseInfo(id)
-		otherInfo = netcourse.getSelectCourseInfo(id, __DEPARTMENT_ID)
+		otherInfo = netcourse.getSelectCourseInfo(id, CourseService.__DEPARTMENT_ID)
 		info.extend(otherInfo)
 
 		return {
