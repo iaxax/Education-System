@@ -76,7 +76,7 @@ def logout():
 
 # 获取课程信息
 # 返回获取结果，提示信息和课程列表
-@app.route('/getAllCourseInfo', methods=['GET'])
+@app.route('/getAllCourseInfo', methods=['GET', 'POST'])
 def getAllCourseInfo():
 	return xmlutil.courseResultToXml(CourseService.getAllCourseInfo())
 
@@ -122,7 +122,7 @@ def quitCourse():
 
 # 获取课程信息
 # 返回获取结果，提示信息和课程列表
-@app.route('/igetAllCourseInfo', methods=['GET'])
+@app.route('/igetAllCourseInfo', methods=['GET', 'POST'])
 def igetAllCourseInfo():
 	return xmlutil.icourseResultToXml(CourseService.igetAllCourseInfo())
 
