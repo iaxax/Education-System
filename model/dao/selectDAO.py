@@ -11,8 +11,8 @@ class SelectDAO:
 		cursor = conn.cursor()
 		sql = "select count(*) from selection where student_id = %d"%(studentId)
 		cursor.execute(sql)
-		result = cursor.fetchall()
-        return cursor[0][0]
+		result = cursor.fetchone()
+        return cursor[0]
 
 	#获取课程选课学生数量
 	def getSelectStudentNum(courseId):
@@ -20,5 +20,5 @@ class SelectDAO:
 		cursor = conn.cursor()
 		sql = "select count(*) from selection where course_id = %d"%(courseId)
 		cursor.execute(sql)
-		result = cursor.fetchall()
-        return cursor[0][0]
+		result = cursor.fetchone()
+        return cursor[0]
