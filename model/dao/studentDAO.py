@@ -3,7 +3,6 @@
 from conn import Connection
 
 class StudentDAO:
-
 	# 获取学生信息
 	@staticmethod
 	def getAllStudentInfo():

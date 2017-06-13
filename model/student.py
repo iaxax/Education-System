@@ -7,6 +7,7 @@ from department import departmentId
 class StudentService:
 
 	# 根据学生ID获得该学生的选课数目
+	@staticmethod
 	def __getSelectCourseNum(studentId):
 		return SelectDAO.getSelectCourseNum(studentId)
 

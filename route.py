@@ -125,7 +125,7 @@ def quitCourse():
 @app.route('/igetCourseStatistics', methods=['GET'])
 def igetCourseStatistics():
 	result = StudentService.getStudentStatistics()
-	return CourseService.istudentStatisticsToXml(result)
+	return xmlutil.istudentStatisticsToXml(result)
 
 # 获得学生统计信息
 @app.route('/igetStudentStatistics', methods=['GET'])
