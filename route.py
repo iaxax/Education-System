@@ -13,27 +13,27 @@ app = Flask(__name__)
 app.secret_key = 'whatisasecretkey'
 
 # 获取登录界面
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET', 'POST'])
 def getLoginHTML():
 	return render_template('login.html')
 
 # 获取退课界面
-@app.route('/quitPage', methods=['GET'])
+@app.route('/quitPage', methods=['GET', 'POST'])
 def getQuitCourseHTML():
 	return render_template('Drop.html')
 
 # 获取选课界面
-@app.route('/selectPage', methods=['GET'])
+@app.route('/selectPage', methods=['GET', 'POST'])
 def getSelectCourseHTML():
 	return render_template('Choose.html')
 
 # 获取主页面
-@app.route('/home', methods=['GET'])
+@app.route('/home', methods=['GET', 'POST'])
 def getHomeHTML():
 	return render_template('index.html')
 
 # 获取选课信息页面
-@app.route('/showPage', methods=['GET'])
+@app.route('/showPage', methods=['GET', 'POST'])
 def getCourseInfoHTML():
 	return render_template('MyClass.html')
 
@@ -41,7 +41,7 @@ def isLogin():
 	return 'isLogin' in session and session['isLogin']
 	
 # 测试
-@app.route('/test', methods=['GET'])
+@app.route('/test', methods=['GET', 'POST'])
 def test():
 	return render_template('/test.html')
 
@@ -84,7 +84,7 @@ def getAllCourseInfo():
 
 # 获取学生的所选课程
 # 返回获取结果，提示信息和课程列表
-@app.route('/getCourseInfo', methods=['GET'])
+@app.route('/getCourseInfo', methods=['GET', 'POST'])
 def getCourseInfo():
 	if (not isLogin()):
 		return xmlutil.loginResultToXml(CourseService.getNotLoginResult())
@@ -117,24 +117,24 @@ def quitCourse():
 	username = session['username']
 	return xmlutil.loginResultToXml(CourseService.quitCourse(username, int(courseId)))
 
-# -----------------------------数据集成之前的接口(END)--------------------------------
-
-# -----------------------------数据集成之后的接口(BEGIN)------------------------------
-
 # 获得课程统计信息
-@app.route('/igetCourseStatistics', methods=['GET'])
-def igetCourseStatistics():
+@app.route('/getCourseStatistics', methods=['GET', 'POST'])
+def getCourseStatistics():
 	result = CourseService.getCourseStatistics()
 	return xmlutil.icourseStatisticsToXml(result)
 	
 # 获得学生统计信息
-@app.route('/igetStudentStatistics', methods=['GET'])
-def igetStudentStatistics():
+@app.route('/getStudentStatistics', methods=['GET', 'POST'])
+def getStudentStatistics():
 	result = StudentService.getStudentStatistics()
 	return xmlutil.istudentStatisticsToXml(result)
 
+# -----------------------------数据集成之前的接口(END)--------------------------------
+
+# -----------------------------数据集成之后的接口(BEGIN)------------------------------
+
 # 根据ID列表获取相应课程信息
-@app.route('/igetCourseByIds', methods=['POST'])
+@app.route('/igetCourseByIds', methods=['GET', 'POST'])
 def igetCourseByIds():
 	idStr = request.form['courseIds']
 	return xmlutil.icourseResultToXml(CourseService.igetCourseInfoByIds(idStr.split(',')))
@@ -149,7 +149,7 @@ def igetAllCourseInfo():
 
 # 获取学生的所选课程
 # 返回获取结果，提示信息和课程列表
-@app.route('/igetCourseInfo', methods=['GET'])
+@app.route('/igetCourseInfo', methods=['GET', 'POST'])
 def igetCourseInfo():
 	if (not isLogin()):
 		return xmlutil.loginResultToXml(CourseService.getNotLoginResult())
