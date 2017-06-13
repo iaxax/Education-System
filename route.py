@@ -124,14 +124,14 @@ def quitCourse():
 # 获得课程统计信息
 @app.route('/igetCourseStatistics', methods=['GET'])
 def igetCourseStatistics():
-	result = StudentService.getStudentStatistics()
-	return xmlutil.istudentStatisticsToXml(result)
-
+	result = CourseService.getCourseStatistics()
+	return xmlutil.icourseStatisticsToXml(result)
+	
 # 获得学生统计信息
 @app.route('/igetStudentStatistics', methods=['GET'])
 def igetStudentStatistics():
-	result = CourseService.getCourseStatistics()
-	return xmlutil.icourseStatisticsToXml(result)
+	result = StudentService.getStudentStatistics()
+	return xmlutil.istudentStatisticsToXml(result)
 
 # 根据ID列表获取相应课程信息
 @app.route('/igetCourseByIds', methods=['POST'])
