@@ -64,3 +64,35 @@ def loginResultToXml(result):
     message = SubElement(root, 'message')
     message.text = result['message']
     return __xml + ET.tostring(root, encoding='utf-8', method='xml')
+
+def icourseStatisticsToXml(result):
+    root = Element('listBean')
+    for item in result:
+        courseInfo = SubElement(root, 'CourseInfo')
+        courseId = SubElement(courseInfo, 'courseid')
+        courseId.text = item['courseId']
+        name = SubElement(courseInfo, 'name')
+        name.text = item['name']
+        institution = SubElement(courseInfo, 'institution')
+        institution.text = item['institutionId']
+        studentNum = SubElement(courseInfo, 'studentNum')
+        studentNum.text = item['studentNum']
+    
+    return __xml + ET.tostring(root, encoding='utf-8', method='xml')
+
+def istudentStatisticsToXml(result):
+    root = Element('listBean')
+    for item in result:
+        studentInfo = SubElement(root, 'StudentInfo')
+        studentId = SubElement(studentInfo, 'studentid')
+        studentId.text = item['studentId']
+        name = SubElement(studentInfo, 'name')
+        name.text = item['name']
+        institution = SubElement(studentInfo, 'institution')
+        institution.text = item['institutionId']
+        courseNum = SubElement(studentInfo, 'courseNum')
+        courseNum.text = item['courseNum']
+
+    return __xml + ET.tostring(root, encoding='utf-8', method='xml')
+
+

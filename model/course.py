@@ -2,12 +2,11 @@
 
 from dao.courseDAO import CourseDAO
 from dao.accountDAO import AccountDAO
+from dao.selectDAO import SelectDAO
 from http import netcourse
+from department import departmentId
 
 class CourseService:
-
-	# 院系ID
-	__DEPARTMENT_ID = 2
 
 	# 将课程列表转换成字典
 	@staticmethod
@@ -59,10 +58,28 @@ class CourseService:
 		
 	# ------------------------------数据集成之后的处理逻辑(BEGIN)------------------------------------
 
+	# 根据课程ID获得选择该课程的人数
+	@staticmethod
+	def __getSelectStudentNum(courseId):
+		return SelectDAO.getSelectStudentNum(courseId)
+
+	# 获取课程统计信息
+	@staticmethod
+	def getCourseStatistics():
+		allInfo = CourseDAO.getAllCourseInfo()
+		result = []
+		for info in allInfo:
+			num = CourseService.__getSelectStudentNum(info[0])
+			result.append({
+				"courseId": unicode(info[0]), "studentNum": unicode(num), "name": info[1],
+				 "institutionId": unicode(departmentId)
+			})
+		return result
+
 	# 将课程列表转换成字典
 	@staticmethod
 	def __itoCourseDict(courses):
-		newCourses = map(lambda x : (CourseService.__DEPARTMENT_ID,) + x , courses)
+		newCourses = map(lambda x : (departmentId,) + x , courses)
 		result = []
 
 		for (deptId, id, name, addr, time, classtype, dept) in newCourses:
@@ -89,7 +106,7 @@ class CourseService:
 	@staticmethod
 	def igetAllCourseInfo():
 		info = CourseDAO.getAllCourseInfo()
-		otherInfo = netcourse.getAllCourseInfo(CourseService.__DEPARTMENT_ID)
+		otherInfo = netcourse.getAllCourseInfo(departmentId)
 		info.extend(otherInfo)
 
 		return {
@@ -102,7 +119,7 @@ class CourseService:
 	def igetCourseInfo(username):
 		id = AccountDAO.getStudentIdByUserName(username)
 		info = CourseDAO.getCourseInfo(id)
-		otherInfo = netcourse.getSelectCourseInfo(id, CourseService.__DEPARTMENT_ID)
+		otherInfo = netcourse.getSelectCourseInfo(id, departmentId)
 		info.extend(otherInfo)
 
 		return {
@@ -116,10 +133,10 @@ class CourseService:
 		result = None
 		id = AccountDAO.getStudentIdByUserName(username)
 
-		if (courseDept == CourseService.__DEPARTMENT_ID):
+		if (courseDept == departmentId):
 			result = CourseDAO.selectCourse(id, courseId)
 		else:
-			result = netcourse.selectCourse(id, CourseService.__DEPARTMENT_ID, courseId, courseDept)
+			result = netcourse.selectCourse(id, departmentId, courseId, courseDept)
 
 		return {'success':result[0], 'message':result[1]}
 	
@@ -129,10 +146,10 @@ class CourseService:
 		result = None
 		id = AccountDAO.getStudentIdByUserName(username)
 
-		if (courseDept == CourseService.__DEPARTMENT_ID):
+		if (courseDept == departmentId):
 			result = CourseDAO.quitCourse(id, courseId)
 		else:
-			result = netcourse.selectCourse(id, CourseService.__DEPARTMENT_ID, courseId, courseDept)
+			result = netcourse.selectCourse(id, departmentId, courseId, courseDept)
 			
 		return {'success': result[0], 'message':result[1]}
 

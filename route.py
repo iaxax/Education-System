@@ -6,6 +6,7 @@ from flask import session
 from flask import render_template
 from model.account import AccountService
 from model.course import CourseService
+from model.student import StudentService
 from model import xmlutil
 
 app = Flask(__name__)
@@ -120,11 +121,24 @@ def quitCourse():
 
 # -----------------------------数据集成之后的接口(BEGIN)------------------------------
 
+# 获得课程统计信息
+@app.route('/igetCourseStatistics', methods=['GET'])
+def igetCourseStatistics():
+	result = StudentService.getStudentStatistics()
+	return CourseService.istudentStatisticsToXml(result)
+
+# 获得学生统计信息
+@app.route('/igetStudentStatistics', methods=['GET'])
+def igetStudentStatistics():
+	result = CourseService.getCourseStatistics()
+	return xmlutil.icourseStatisticsToXml(result)
+
 # 根据ID列表获取相应课程信息
-@app.route('/getCourseByIds', methods=['POST'])
+@app.route('/igetCourseByIds', methods=['POST'])
 def igetCourseByIds():
 	idStr = request.form['courseIds']
 	return xmlutil.icourseResultToXml(CourseService.igetCourseInfoByIds(idStr.split(',')))
+
 
 # 获取课程信息
 # 返回获取结果，提示信息和课程列表
