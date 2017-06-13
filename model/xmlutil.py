@@ -66,9 +66,9 @@ def loginResultToXml(result):
     return __xml + ET.tostring(root, encoding='utf-8', method='xml')
 
 def icourseStatisticsToXml(result):
-    root = Element('ListBean')
+    root = Element('listBean')
     for item in result:
-        courseInfo = SubElement(root, 'CourseInfo')
+        courseInfo = SubElement(root, 'courseInfo')
         courseId = SubElement(courseInfo, 'courseid')
         courseId.text = item['courseId']
         name = SubElement(courseInfo, 'name')
@@ -81,9 +81,9 @@ def icourseStatisticsToXml(result):
     return __xml + ET.tostring(root, encoding='utf-8', method='xml')
 
 def istudentStatisticsToXml(result):
-    root = Element('ListBean')
+    root = Element('listBean')
     for item in result:
-        studentInfo = SubElement(root, 'StudentInfo')
+        studentInfo = SubElement(root, 'studentInfo')
         studentId = SubElement(studentInfo, 'studentid')
         studentId.text = item['studentId']
         name = SubElement(studentInfo, 'name')
