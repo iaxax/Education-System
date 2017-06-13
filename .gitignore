@@ -1,4 +1,5 @@
-*.db
-config.py
-*.pyc
-*.log
+**/*.db
+**/*.pyc
+**/*.log
+model/dao/config.py
+
