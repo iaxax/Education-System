@@ -3,7 +3,7 @@
 from dao.courseDAO import CourseDAO
 from dao.accountDAO import AccountDAO
 from dao.selectDAO import SelectDAO
-from http import netcourse
+from http.netcourse import NetCourse
 from department import departmentId
 
 class CourseService:
@@ -76,13 +76,17 @@ class CourseService:
 			})
 		return result
 
+	# 获取所有课程统计信息
+	@staticmethod
+	def igetCourseStatistics():
+		return NetCourse.igetCourseStatInfo()
+
 	# 将课程列表转换成字典
 	@staticmethod
 	def __itoCourseDict(courses):
-		newCourses = map(lambda x : (departmentId,) + x , courses)
 		result = []
 
-		for (deptId, id, name, addr, time, classtype, dept) in newCourses:
+		for (deptId, id, name, addr, time, classtype, dept) in courses:
 			result.append({
 				"department_id": unicode(deptId),
 				'course_id': unicode(id), 'name':name,
@@ -106,7 +110,8 @@ class CourseService:
 	@staticmethod
 	def igetAllCourseInfo():
 		info = CourseDAO.getAllCourseInfo()
-		otherInfo = netcourse.getAllCourseInfo(departmentId)
+		info = map(lambda x : (departmentId,) + x , info)
+		otherInfo = NetCourse.getAllCourseInfo(departmentId)
 		info.extend(otherInfo)
 
 		return {
@@ -119,7 +124,8 @@ class CourseService:
 	def igetCourseInfo(username):
 		id = AccountDAO.getStudentIdByUserName(username)
 		info = CourseDAO.getCourseInfo(id)
-		otherInfo = netcourse.getSelectCourseInfo(id, departmentId)
+		info = map(lambda x : (departmentId,) + x , info)
+		otherInfo = NetCourse.getSelectCourseInfo(id, departmentId)
 		info.extend(otherInfo)
 
 		return {
@@ -136,7 +142,7 @@ class CourseService:
 		if (courseDept == departmentId):
 			result = CourseDAO.selectCourse(id, courseId)
 		else:
-			result = netcourse.selectCourse(id, departmentId, courseId, courseDept)
+			result = NetCourse.selectCourse(id, departmentId, courseId, courseDept)
 
 		return {'success':result[0], 'message':result[1]}
 	
@@ -149,7 +155,7 @@ class CourseService:
 		if (courseDept == departmentId):
 			result = CourseDAO.quitCourse(id, courseId)
 		else:
-			result = netcourse.selectCourse(id, departmentId, courseId, courseDept)
+			result = NetCourse.selectCourse(id, departmentId, courseId, courseDept)
 			
 		return {'success': result[0], 'message':result[1]}
 

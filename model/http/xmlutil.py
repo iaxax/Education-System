@@ -11,7 +11,9 @@ def xmlToCourseInfo(courseXml):
     result = []
     for child in root:
         result.append((
-            child[0].text, child[1].text, child[2].text, child[3].text,
-            child[4].text, child[5].text, child[6].text
+            child.find('department_id').text, child.find('course_id').text, 
+            child.find('name').text, child.find('classroom').text,
+            child.find('classtime').text, child.find('type').text,
+            child.find('department').text
         ))
     return result

@@ -3,6 +3,7 @@
 from dao.studentDAO import StudentDAO
 from dao.selectDAO import SelectDAO
 from department import departmentId
+from http.netstudent import NetStudent
 
 class StudentService:
 
@@ -10,6 +11,11 @@ class StudentService:
 	@staticmethod
 	def __getSelectCourseNum(studentId):
 		return SelectDAO.getSelectCourseNum(studentId)
+
+	# 获取所有学生统计信息
+	@staticmethod
+	def igetStudentStatistics():
+		return NetStudent.getAllStudentStatInfo()
 
 	# 获取学生统计信息
 	@staticmethod

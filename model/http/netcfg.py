@@ -1,11 +1,15 @@
 #encoding;utf-8
 
-host = 'http://115.159.161.87:8080'
+host = 'http://localhost:8088'
 
-selectUrl = ''
+selectUrl = host + '/student/chooseCourse'
 
-quitUrl = ''
+quitUrl = host + '/student/dropCourse'
 
-allCourseUrl = ''
+allCourseUrl = host + '/student/courses'
 
-selectCourseUrl = ''
+selectCourseUrl = host + '/student/studyCourses'
+
+courseStatUrl = host + '/student/courseStatistics'
+
+studentStatUrl = host + '/student/studentStatistics'

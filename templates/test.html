@@ -21,6 +21,34 @@
 	<h2>退课</h2>
 	<p id="quit"></p>
 	<br />
+
+	<p style="color:aquamarine">集成之后的测试</p>
+	<br />
+
+	<h2>所有课程信息</h2>
+	<p id='iallCourse'></p>
+	<br />
+
+	<h2>课程统计信息</h2>
+	<p id = "courseStat"></p>
+	<br />
+
+	<h2>学生统计信息</h2>
+	<p id = "studentStat"></p>
+	<br />
+
+	<h2>跨院系选课信息</h2>
+	<p id="icourse"></p>
+	<br />
+
+	<h2>跨院系选课</h2>
+	<p id="iselect"></p>
+	<br />
+
+	<h2>跨院系退课</h2>
+	<p id="iquit"></p>
+	<br />
+
 <body>
 
 <script>
@@ -68,6 +96,64 @@
 				'data': {'courseId': 1},
 				success: function(res) {
 					$('#quit').text(JSON.stringify(res));
+				}
+			});
+
+			// 集成之后的接口测试
+
+			// 全部课程信息
+			$.ajax({
+				'url': '/igetAllCourseInfo',
+				'method': 'get',
+				success: function(data) {
+					$('#iallCourse').text(JSON.stringify(data));
+				}
+			});
+
+			// 课程统计信息
+			$.ajax({
+				'url': '/igetCourseStatistics',
+				'method': 'get',
+				success:function(data) {
+					$('#courseStat').text(JSON.stringify(data));
+				}
+			});
+
+			// 学生统计信息
+			$.ajax({
+				'url': '/igetStudentStatistics',
+				'method': 'get',
+				success:function(data) {
+					$('#studentStat').text(JSON.stringify(data));
+				}
+			});
+
+			// 跨院系选课信息
+			$.ajax({
+				'url': '/igetCourseInfo',
+				'method': 'get',
+				success:function(data) {
+					$('#icourse').text(JSON.stringify(data));
+				}
+			});
+
+			// 跨院系选课
+			$.ajax({
+				'url': '/iselectCourse',
+				'method': 'post',
+				'data': {'courseId': '30001', 'courseDept':'2'},
+				success: function(res) {
+					$('#iselect').text(JSON.stringify(res));
+				}
+			});
+			
+			// 跨院系退课
+			$.ajax({
+				'url': '/iquitCourse',
+				'method': 'post',
+				'data': {'courseId': '30001', 'courseDept':'2'},
+				success: function(res) {
+					$('#iquit').text(JSON.stringify(res));
 				}
 			});
 		}

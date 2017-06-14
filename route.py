@@ -133,6 +133,16 @@ def getStudentStatistics():
 
 # -----------------------------数据集成之后的接口(BEGIN)------------------------------
 
+# 获得课程统计信息
+@app.route('/igetCourseStatistics', methods=['GET', 'POST'])
+def igetCourseStatistics():
+	return CourseService.igetCourseStatistics()
+
+# 获得学生统计信息
+@app.route('/igetStudentStatistics', methods=['GET', 'POST'])
+def igetStudentStatistics():
+	return StudentService.igetStudentStatistics()
+
 # 根据ID列表获取相应课程信息
 @app.route('/igetCourseByIds', methods=['GET', 'POST'])
 def igetCourseByIds():
@@ -167,7 +177,7 @@ def iselectCourse():
 	
 	courseId = request.form['courseId']
 	username = session['username']
-	courdeDept = request.form['courseDept']
+	courseDept = request.form['courseDept']
 	return xmlutil.loginResultToXml(CourseService.iselectCourse(username, int(courseId), int(courseDept)))
 	
 	
@@ -182,7 +192,7 @@ def iquitCourse():
 	courseId = request.form['courseId']
 	username = session['username']
 	courseDept = request.form['courseDept']
-	return xmlutil.icourseResultToXml(CourseService.iquitCourse(username, int(courseId), int(courseDept)))
+	return xmlutil.loginResultToXml(CourseService.iquitCourse(username, int(courseId), int(courseDept)))
 
 # ------------------------------数据集成之后的接口(END)--------------------------------
 
