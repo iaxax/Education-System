@@ -1,4 +1,5 @@
 #encoding:utf-8
+
 import urllib
 
 def get(url):
@@ -13,3 +14,13 @@ def post(url, data):
     textbytes = f.read()
     text = textbytes.decode('utf8')
     return text
+
+def getCourseStatistics():
+    pass
+
+def getStudentStatistics():
+    pass
+
+def getAllCourseInfo(departmentId):
+    pass
+

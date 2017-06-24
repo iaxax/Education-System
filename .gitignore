@@ -1,7 +1,6 @@
 **/*.pyc
-logs/
-model/dao/config.py
-model/dao/education.db
+src/config/dbconfig.py
+data/
 
 
 

@@ -1,7 +1,7 @@
 #encoding=utf-8
 
 import sqlite3
-import config
+from src.config import dbconfig
 
 class Connection:
 	__conn = None
@@ -10,7 +10,7 @@ class Connection:
 	@staticmethod
 	def getConnection():
 		if (not Connection.__conn):
-			Connection.__conn = sqlite3.connect(config.db_path, check_same_thread=False)
+			Connection.__conn = sqlite3.connect(dbconfig.db_path, check_same_thread=False)
 				
 		return Connection.__conn
 				

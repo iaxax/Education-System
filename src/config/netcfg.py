@@ -13,3 +13,5 @@ selectCourseUrl = host + '/student/studyCourses'
 courseStatUrl = host + '/student/courseStatistics'
 
 studentStatUrl = host + '/student/studentStatistics'
+
+wsdlUrl = host + '?wsdl'

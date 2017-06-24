@@ -1,9 +1,9 @@
 #coding:utf-8
 
-from dao.studentDAO import StudentDAO
-from dao.selectDAO import SelectDAO
-from department import departmentId
-from http.netstudent import NetStudent
+from src.dao.studentDAO import StudentDAO
+from src.dao.selectDAO import SelectDAO
+from src.service.department import departmentId
+from src.service.netstudent import NetStudent
 
 class StudentService:
 

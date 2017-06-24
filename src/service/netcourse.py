@@ -1,14 +1,17 @@
 #encoding:utf-8
 
-from netutil import get
-from netutil import post
-from netcfg import allCourseUrl
-from netcfg import selectCourseUrl
-from netcfg import selectUrl
-from netcfg import quitUrl
-from netcfg import courseStatUrl
-from xmlutil import xmlToCourseInfo
-from xmlutil import xmlToResultInfo
+import sys
+sys.path.append('..')
+
+from src.util.netutil import get
+from src.util.netutil import post
+from src.config.netcfg import allCourseUrl
+from src.config.netcfg import selectCourseUrl
+from src.config.netcfg import selectUrl
+from src.config.netcfg import quitUrl
+from src.config.netcfg import courseStatUrl
+from src.util.xmlutil import xmlToCourseInfo
+from src.util.xmlutil import xmlToResultInfo
 
 class NetCourse:
 

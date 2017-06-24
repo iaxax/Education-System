@@ -1,6 +1,6 @@
 #encoding:utf-8
 
-from dao.accountDAO import AccountDAO
+from src.dao.accountDAO import AccountDAO
 
 class AccountService:
 

@@ -1,13 +1,14 @@
 #coding:utf-8
 
+
 from flask import Flask
 from flask import request
 from flask import session
 from flask import render_template
-from model.account import AccountService
-from model.course import CourseService
-from model.student import StudentService
-from model import xmlutil
+from src.service.account import AccountService
+from src.service.course import CourseService
+from src.service.student import StudentService
+from src.util import xmlutil
 
 app = Flask(__name__)
 app.secret_key = 'whatisasecretkey'

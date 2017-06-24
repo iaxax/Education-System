@@ -1,7 +1,7 @@
 #encoding:utf-8
 
-from netutil import get
-from netcfg import studentStatUrl
+from src.util.netutil import get
+from src.config.netcfg import studentStatUrl
 
 class NetStudent:
 

@@ -1,10 +1,10 @@
 #coding:utf-8
 
-from dao.courseDAO import CourseDAO
-from dao.accountDAO import AccountDAO
-from dao.selectDAO import SelectDAO
-from http.netcourse import NetCourse
-from department import departmentId
+from src.dao.courseDAO import CourseDAO
+from src.dao.accountDAO import AccountDAO
+from src.dao.selectDAO import SelectDAO
+from src.service.netcourse import NetCourse
+from src.service.department import departmentId
 
 class CourseService:
 
