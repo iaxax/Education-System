@@ -54,7 +54,7 @@
 <script>
 	// 登录
 	$.ajax({
-		'url': '/login',
+		'url': '/education/login',
 		'method': 'post',
 		'data': {
 			'username': '141110001',
@@ -63,7 +63,7 @@
 		success: function(result) {
 			// 获取课程信息
 			$.ajax({
-				'url': '/getAllCourseInfo',
+				'url': '/education/getAllCourseInfo',
 				'method': 'get',
 				success: function(course) {
 					$('#allCourse').text(JSON.stringify(course));
@@ -72,7 +72,7 @@
 			
 			// 获取选课信息
 			$.ajax({
-				'url': '/getCourseInfo',
+				'url': '/education/getCourseInfo',
 				'method': 'get',
 				success: function(course) {
 					$('#course').text(JSON.stringify(course));
@@ -81,7 +81,7 @@
 			
 			// 选课
 			$.ajax({
-				'url': '/selectCourse',
+				'url': '/education/selectCourse',
 				'method': 'post',
 				'data': {'courseId': 1},
 				success: function(res) {
@@ -91,7 +91,7 @@
 			
 			// 退课
 			$.ajax({
-				'url': '/quitCourse',
+				'url': '/education/quitCourse',
 				'method': 'post',
 				'data': {'courseId': 1},
 				success: function(res) {
@@ -103,7 +103,7 @@
 
 			// 全部课程信息
 			$.ajax({
-				'url': '/igetAllCourseInfo',
+				'url': '/education/integration/getAllCourseInfo',
 				'method': 'get',
 				success: function(data) {
 					$('#iallCourse').text(JSON.stringify(data));
@@ -112,7 +112,7 @@
 
 			// 课程统计信息
 			$.ajax({
-				'url': '/igetCourseStatistics',
+				'url': '/education/integration/getCourseStatistics',
 				'method': 'get',
 				success:function(data) {
 					$('#courseStat').text(JSON.stringify(data));
@@ -121,7 +121,7 @@
 
 			// 学生统计信息
 			$.ajax({
-				'url': '/igetStudentStatistics',
+				'url': '/education/integration/getStudentStatistics',
 				'method': 'get',
 				success:function(data) {
 					$('#studentStat').text(JSON.stringify(data));
@@ -130,7 +130,7 @@
 
 			// 跨院系选课信息
 			$.ajax({
-				'url': '/igetCourseInfo',
+				'url': '/education/integration/getCourseInfo',
 				'method': 'get',
 				success:function(data) {
 					$('#icourse').text(JSON.stringify(data));
@@ -139,7 +139,7 @@
 
 			// 跨院系选课
 			$.ajax({
-				'url': '/iselectCourse',
+				'url': '/education/integration/selectCourse',
 				'method': 'post',
 				'data': {'courseId': '30001', 'courseDept':'2'},
 				success: function(res) {
@@ -149,7 +149,7 @@
 			
 			// 跨院系退课
 			$.ajax({
-				'url': '/iquitCourse',
+				'url': '/education/integration/quitCourse',
 				'method': 'post',
 				'data': {'courseId': '30001', 'courseDept':'2'},
 				success: function(res) {

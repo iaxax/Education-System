@@ -1,7 +1,11 @@
 #encoding:utf-8
 
 from src.dao.accountDAO import AccountDAO
+from src.util import xmlutil
 
+"""
+处理于账户有关的逻辑
+"""
 class AccountService:
 
 	# 登录校验
@@ -9,6 +13,6 @@ class AccountService:
 	@staticmethod
 	def login(username, password):
 		if (AccountDAO.isAccountValid(username, password)):
-			return {"success": '1', "message": u"登录成功"}
+			return {"success": unicode(True), "message": u"登录成功"}
 		else:
-			return {"success": '0', "message": u"账号与密码不匹配"}
+			return {"success": unicode(False), "message": u"账号与密码不匹配"}

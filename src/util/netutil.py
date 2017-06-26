@@ -1,6 +1,7 @@
 #encoding:utf-8
 
 import urllib
+from src.config.netcfg import wsdlUrl
 
 def get(url):
     f = urllib.urlopen(url)
@@ -14,13 +15,3 @@ def post(url, data):
     textbytes = f.read()
     text = textbytes.decode('utf8')
     return text
-
-def getCourseStatistics():
-    pass
-
-def getStudentStatistics():
-    pass
-
-def getAllCourseInfo(departmentId):
-    pass
-
