@@ -1,5 +1,6 @@
 **/*.pyc
 src/config/dbconfig.py
 data/
+data/education.db
 
 
