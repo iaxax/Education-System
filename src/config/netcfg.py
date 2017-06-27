@@ -14,8 +14,6 @@ courseStatUrl = host + '/student/courseStatistics'
 
 studentStatUrl = host + '/student/studentStatistics'
 
-# webServiceHost = 'http://115.159.161.87:8080'
+webServiceHost = 'http://115.159.161.87:8080'
 
-webServiceHost = 'http://localhost:8088'
-
-wsdlUrl = webServiceHost + '/ws/integration?wsdl'
+wsdlUrl = webServiceHost + '/Integration/ws/integration?wsdl'
