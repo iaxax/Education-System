@@ -103,9 +103,6 @@ class NetCourse:
 	def __iGetOtherCourseInfo(departmentId):
 		data = {'institutionId': departmentId}
 		allCourseXml = post(allCourseUrl, data)
-		print '------------------------------'
-		print allCourseXml
-		print '------------------------------'
 		return xmlutil.xmlToCourseInfo(allCourseXml)
 
     # 从其他院系请求选课信息

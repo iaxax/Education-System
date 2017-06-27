@@ -5,11 +5,11 @@ from xml.etree import ElementTree as ET
 from xml.etree.ElementTree import Element, SubElement
 
 def xmlToResultInfo(resultXml):
-    root = ElementTree.fromstring(resultXml).text
+    root = ElementTree.fromstring(resultXml.encode('utf-8')).text
     return (root[0].text, root[1].text)
 
 def xmlToCourseInfo(courseXml):
-    root = ElementTree.fromstring(courseXml)
+    root = ElementTree.fromstring(courseXml.encode('utf-8'))
     result = []
     for child in root:
         result.append((
@@ -112,4 +112,5 @@ def istudentStatisticsToXml(result):
         courseNum.text = item['courseNum']
 
     return __xml + ET.tostring(root, encoding='utf-8', method='xml')
+
 

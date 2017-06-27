@@ -22,7 +22,7 @@
 	<p id="quit"></p>
 	<br />
 
-	<p style="color:aquamarine">集成之后的测试</p>
+	<!--<p style="color:aquamarine">集成之后的测试</p>
 	<br />
 
 	<h2>所有课程信息</h2>
@@ -47,6 +47,33 @@
 
 	<h2>跨院系退课</h2>
 	<p id="iquit"></p>
+	<br />-->
+
+	<p style="color:aquamarine">Web Service的测试</p>
+	<br />
+
+	<h2>所有课程信息</h2>
+	<p id='wsAllCourse'></p>
+	<br />
+
+	<h2>课程统计信息</h2>
+	<p id = "wsCourseStat"></p>
+	<br />
+
+	<h2>学生统计信息</h2>
+	<p id = "wsStudentStat"></p>
+	<br />
+
+	<h2>跨院系选课信息</h2>
+	<p id="wsCourse"></p>
+	<br />
+
+	<h2>跨院系选课</h2>
+	<p id="wsSelect"></p>
+	<br />
+
+	<h2>跨院系退课</h2>
+	<p id="wsQuit"></p>
 	<br />
 
 <body>
@@ -99,61 +126,119 @@
 				}
 			});
 
+			// // 集成之后的接口测试
+
+			// // 全部课程信息
+			// $.ajax({
+			// 	'url': '/education/integration/getAllCourseInfo',
+			// 	'method': 'get',
+			// 	success: function(data) {
+			// 		$('#iallCourse').text(JSON.stringify(data));
+			// 	}
+			// });
+
+			// // 课程统计信息
+			// $.ajax({
+			// 	'url': '/education/integration/getCourseStatistics',
+			// 	'method': 'get',
+			// 	success:function(data) {
+			// 		$('#courseStat').text(JSON.stringify(data));
+			// 	}
+			// });
+
+			// // 学生统计信息
+			// $.ajax({
+			// 	'url': '/education/integration/getStudentStatistics',
+			// 	'method': 'get',
+			// 	success:function(data) {
+			// 		$('#studentStat').text(JSON.stringify(data));
+			// 	}
+			// });
+
+			// // 跨院系选课信息
+			// $.ajax({
+			// 	'url': '/education/integration/getCourseInfo',
+			// 	'method': 'get',
+			// 	success:function(data) {
+			// 		$('#icourse').text(JSON.stringify(data));
+			// 	}
+			// });
+
+			// // 跨院系选课
+			// $.ajax({
+			// 	'url': '/education/integration/selectCourse',
+			// 	'method': 'post',
+			// 	'data': {'courseId': '30001', 'courseDept':'2'},
+			// 	success: function(res) {
+			// 		$('#iselect').text(JSON.stringify(res));
+			// 	}
+			// });
+			
+			// // 跨院系退课
+			// $.ajax({
+			// 	'url': '/education/integration/quitCourse',
+			// 	'method': 'post',
+			// 	'data': {'courseId': '30001', 'courseDept':'2'},
+			// 	success: function(res) {
+			// 		$('#iquit').text(JSON.stringify(res));
+			// 	}
+			// });
+
 			// 集成之后的接口测试
 
 			// 全部课程信息
 			$.ajax({
-				'url': '/education/integration/getAllCourseInfo',
+				'url': '/education/webservice/getAllCourseInfo',
 				'method': 'get',
 				success: function(data) {
-					$('#iallCourse').text(JSON.stringify(data));
+					$('#wsAllCourse').text(JSON.stringify(data));
 				}
 			});
 
 			// 课程统计信息
 			$.ajax({
-				'url': '/education/integration/getCourseStatistics',
+				'url': '/education/webservice/getCourseStatistics',
 				'method': 'get',
 				success:function(data) {
-					$('#courseStat').text(JSON.stringify(data));
+					$('#wsCourseStat').text(JSON.stringify(data));
 				}
 			});
 
 			// 学生统计信息
 			$.ajax({
-				'url': '/education/integration/getStudentStatistics',
+				'url': '/education/webservice/getStudentStatistics',
 				'method': 'get',
 				success:function(data) {
-					$('#studentStat').text(JSON.stringify(data));
+					$('#wsStudentStat').text(JSON.stringify(data));
 				}
 			});
 
 			// 跨院系选课信息
 			$.ajax({
-				'url': '/education/integration/getCourseInfo',
+				'url': '/education/webservice/getCourseInfo',
 				'method': 'get',
 				success:function(data) {
-					$('#icourse').text(JSON.stringify(data));
+					$('#wsCourse').text(JSON.stringify(data));
 				}
 			});
 
 			// 跨院系选课
 			$.ajax({
-				'url': '/education/integration/selectCourse',
+				'url': '/education/webservice/selectCourse',
 				'method': 'post',
 				'data': {'courseId': '30001', 'courseDept':'2'},
 				success: function(res) {
-					$('#iselect').text(JSON.stringify(res));
+					$('#wsSelect').text(JSON.stringify(res));
 				}
 			});
 			
 			// 跨院系退课
 			$.ajax({
-				'url': '/education/integration/quitCourse',
+				'url': '/education/webservice/quitCourse',
 				'method': 'post',
 				'data': {'courseId': '30001', 'courseDept':'2'},
 				success: function(res) {
-					$('#iquit').text(JSON.stringify(res));
+					$('#wsQuit').text(JSON.stringify(res));
 				}
 			});
 		}
