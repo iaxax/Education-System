@@ -2,9 +2,8 @@
 
 from src.dao.studentDAO import StudentDAO
 from src.dao.selectDAO import SelectDAO
-from src.service.department import departmentId
-from src.service.netstudent import NetStudent
-import src.util.xmlutil
+from src.service import departmentId
+from src.util import xmlutil
 
 class StudentService:
 
@@ -12,11 +11,6 @@ class StudentService:
 	@staticmethod
 	def __getSelectCourseNum(studentId):
 		return SelectDAO.getSelectCourseNum(studentId)
-
-	# 获取所有学生统计信息
-	@staticmethod
-	def igetStudentStatistics():
-		return xmlutil.istudentStatisticsToXml(NetStudent.getAllStudentStatInfo())
 
 	# 获取学生统计信息
 	@staticmethod
