@@ -97,8 +97,8 @@
         <div id="sidebar"  class="nav-collapse ">
             <!-- sidebar menu start-->
             <ul class="sidebar-menu">
-                <li class="sub-menu">
-                    <a class="" href="/home">
+                <li class="active">
+                    <a class="" href="/page/home">
                         <i class="icon_house_alt"></i>
                         <span>Main Page</span>
                     </a>
@@ -110,8 +110,8 @@
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" href="/showPage">My Class</a></li>
-                        <li><a class="" href="/quitPage">Drop Class</a></li>
+                        <li><a class="" href="/page/showPage">My Class</a></li>
+                        <li><a class="" href="/page/quitPage">Drop Class</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -121,7 +121,31 @@
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" href="/selectPage">Choose Class</a></li>
+                        <li><a class="" href="/page/selectPage">Choose Class</a></li>
+                    </ul>
+                </li>
+
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="icon_document_alt"></i>
+                        <span>Cross-Class</span>
+                        <span class="menu-arrow arrow_carrot-right"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" href="/page/cross">Total-class</a></li>
+                        <li><a class="" href="/page/cross-choose">Choose-class</a></li>
+                        <li><a class="" href="/page/cross-drop">Drop-class</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="icon_piechart"></i>
+                        <span>Statistic</span>
+                        <span class="menu-arrow arrow_carrot-right"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" href="/page/statistic_cou">Class-statistic</a></li>
+                        <li><a class="" href="/page/statistic_stu">Student-statistic</a></li>
                     </ul>
                 </li>
 
@@ -227,7 +251,7 @@
 <script src="/static/js/jquery.slimscroll.min.js"></script>
 
 <script>
-    var url = "/getCourseInfo";
+    var url = "/education/webservice/getCourseInfo";
     $.ajax({
         url: url,
         type: "GET",

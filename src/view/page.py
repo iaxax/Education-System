@@ -34,3 +34,28 @@ def getCourseInfoHTML():
 @page.route('/test', methods=['GET', 'POST'])
 def test():
 	return render_template('/test.html')
+
+#统计
+@page.route('/statistic_stu', methods=['GET', 'POST'])
+def getStatistic_stu():
+	return render_template('/Statistics_student.html')
+
+#统计
+@page.route('/statistic_cou', methods=['GET', 'POST'])
+def getStatistic_cou():
+	return render_template('/Statistics_course.html')
+
+#cross clss
+@page.route('/cross', methods=['GET', 'POST'])
+def getcross():
+	return render_template('/cross-Class.html')
+
+#cross class Choose
+@page.route('/cross-choose', methods=['GET', 'POST'])
+def crosschoose():
+	return render_template('/cross-Class-choose.html')
+
+#cross class Drop
+@page.route('/cross-drop', methods=['GET', 'POST'])
+def crossdrop():
+	return render_template('/cross-Class-drop.html')

@@ -28,7 +28,7 @@
 
 <div class="container">
 
-    <form class="login-form" action="/home">
+    <form class="login-form" action="/page/home">
         <div class="login-wrap">
             <p class="login-img"><i class="icon_lock_alt"></i></p>
             <div class="input-group">
@@ -56,7 +56,7 @@
         var name = document.getElementById("username").val();
         var pass = document.getElementById("password").val();
         $.ajax({
-            url: url,
+            url: "/education/login",
             type: "POST",
             dataType: "json",
             data:{"username": name,"password":pass},
