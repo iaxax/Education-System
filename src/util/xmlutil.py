@@ -6,14 +6,14 @@ from xml.etree.ElementTree import Element, SubElement
 
 def xmlToResultInfo(resultXml):
     root = ElementTree.fromstring(resultXml.encode('utf-8')).text
-    return (root[0].text, root[1].text)
+    return (root[0], root[1])
 
 def xmlToCourseInfo(courseXml):
     root = ElementTree.fromstring(courseXml.encode('utf-8'))
     result = []
     for child in root:
         result.append((
-            child.find('department_id').text, child.find('course_id').text, 
+            child.find('department_id').text, child.find('course_id').text,
             child.find('name').text, child.find('classroom').text,
             child.find('classtime').text, child.find('type').text,
             child.find('department').text
@@ -95,7 +95,7 @@ def icourseStatisticsToXml(result):
         institution.text = item['institutionId']
         studentNum = SubElement(courseInfo, 'studentNum')
         studentNum.text = item['studentNum']
-    
+
     return __xml + ET.tostring(root, encoding='utf-8', method='xml')
 
 def istudentStatisticsToXml(result):
@@ -112,5 +112,3 @@ def istudentStatisticsToXml(result):
         courseNum.text = item['courseNum']
 
     return __xml + ET.tostring(root, encoding='utf-8', method='xml')
-
-
