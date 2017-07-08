@@ -8,7 +8,7 @@
     <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
     <link rel="shortcut icon" href="img/favicon.png">
 
-    <title>Creative - Bootstrap Admin Template</title>
+    <title>Creative System</title>
 
     <!-- Bootstrap CSS -->
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
@@ -261,7 +261,7 @@
         type: "GET",
         dataType: "xml",
         success: function (Message) {
-            // alert(Message.message);
+            alert("我的课程信息显示成功!!");
             //alert($(Message).find("message").text());
 
             $(Message).find("course").each(
