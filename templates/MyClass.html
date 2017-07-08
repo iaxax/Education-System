@@ -181,11 +181,13 @@
                             <tbody id="class_body">
                             <tr>
                                 <th><i class="icon_profile"></i> Full Name</th>
+                                <th><i class="icon_mobile"></i> course_id</th>
                                 <th><i class="icon_calendar"></i> class time</th>
                                 <th><i class="icon_mail_alt"></i> class room</th>
                                 <th><i class="icon_pin_alt"></i> department</th>
-                                <th><i class="icon_mobile"></i> course_id</th>
+                                <th><i class="icon_pin_alt"></i> department_id</th>
                                 <th><i class="icon_cogs"></i> type</th>
+                                <th>action</th>
                             </tr>
                             <!-- <tr>
                                 <td>Mario Norris</td>
@@ -267,16 +269,17 @@
             // })
             $(Message).find("course").each(
               function(){
-                var name="",time="",id="",room="",type="",department="";
+                var name="",time="",id="",room="",type="",department="",depart_id="";
                 name = $(this).find("name").text();
                 time = $(this).find("classtime").text();
                 id = $(this).find("course_id").text();
                 room = $(this).find("classroom").text();
                 type = $(this).find("type").text();
                 department = $(this).find("department").text();
+                  depart_id = $(this).find("department_id").text();
 
                 var classinfo = "";
-                classinfo += "<tr><td>"+name+"</td>><td>"+time+"</td><td>"+room+"</td><td>"+department+"</td><td>"+id+"</td><td>"+type+"</td></tr>";
+                classinfo += "<tr><td>"+name+"</td><td>"+id+"</td><td>"+time+"</td><td>"+room+"</td><td>"+department+"</td><td>"+depart_id+"</td><td>"+type+"</td></tr>";
                 $('#class_body').append(classinfo);
               }
             )
