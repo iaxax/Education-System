@@ -261,7 +261,7 @@
         dataType: "xml",
         success: function (Message) {
             // alert(Message.message);
-            alert($(Message).find("message").text());
+            //alert($(Message).find("message").text());
 
             $(Message).find("course").each(
                     function(){
@@ -305,7 +305,7 @@
             data:{"courseId": text,'courseDept':text1},
             success : function(Message){
                 // alert(Message.message);
-                alert($(Message).find("message").text());
+                //alert($(Message).find("message").text());
                 refresh();
 
             },
