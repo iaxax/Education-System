@@ -82,7 +82,7 @@
                         <div class="log-arrow-up"></div>
 
                         <li>
-                            <a href="/"><i class="icon_key_alt"></i> Log Out</a>
+                            <a href="/page/"><i class="icon_key_alt"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -181,10 +181,11 @@
                             <tbody id="class_body">
                             <tr>
                                 <th><i class="icon_profile"></i> Full Name</th>
+                                <th><i class="icon_mobile"></i> course_id</th>
                                 <th><i class="icon_calendar"></i> class time</th>
                                 <th><i class="icon_mail_alt"></i> class room</th>
                                 <th><i class="icon_pin_alt"></i> department</th>
-                                <th><i class="icon_mobile"></i> course_id</th>
+                                <th><i class="icon_pin_alt"></i> department_id</th>
                                 <th><i class="icon_cogs"></i> type</th>
                                 <th>action</th>
                             </tr>
@@ -238,7 +239,7 @@
 <script src="/static/js/scripts.js"></script>
 <!-- custom script for this page-->
 <script src="/static/js/sparkline-chart.js"></script>
-<script src="/static/js/easy-pie-chart.js"></script>
+
 <script src="/static/js/jquery-jvectormap-1.2.2.min.js"></script>
 <script src="/static/js/jquery-jvectormap-world-mill-en.js"></script>
 <script src="/static/js/xcharts.min.js"></script>
@@ -253,36 +254,32 @@
 <script>
     var url = "/education/webservice/getCourseInfo";
     var number = 1;
+    var num = 2;
     $.ajax({
         url: url,
         type: "GET",
         dataType: "xml",
         success: function (Message) {
             // alert(Message.message);
-            alert($(Message).find("message").text());
-
-            // $.each(Message.courses,function (i,n) {
-            //     var classinfo = "";
-            //     classinfo += "<tr><td>"+n["name"]+"</td>><td>"+n["classtime"]+"</td><td>"+n["classroom"]+"</td><td>"+n["department"]+"</td><td id=\""+number+"\">"+n["course_id"]+"</td><td>"+n["type"]+"</td><td><div class=\"btn-group\"><a class=\"btn btn-danger\" href=\"#\" onclick=\"choose(\'"+number+"\')\"><i class=\"icon_close_alt2\"></i></a></div></td></tr>";
-            //     $('#class_body').append(classinfo);
-            //     number = number+1;
-            // })
+            //alert($(Message).find("message").text());
 
             $(Message).find("course").each(
-              function(){
-                var name="",time="",id="",room="",type="",department="";
-                name = $(this).find("name").text();
-                time = $(this).find("classtime").text();
-                id = $(this).find("course_id").text();
-                room = $(this).find("classroom").text();
-                type = $(this).find("type").text();
-                department = $(this).find("department").text();
+                    function(){
+                        var name="",time="",id="",room="",type="",department="",depart_id="";
+                        name = $(this).find("name").text();
+                        time = $(this).find("classtime").text();
+                        id = $(this).find("course_id").text();
+                        room = $(this).find("classroom").text();
+                        type = $(this).find("type").text();
+                        department = $(this).find("department").text();
+                        depart_id = $(this).find("department_id").text();
 
-                var classinfo = "";
-                classinfo += "<tr><td>"+name+"</td>><td>"+time+"</td><td>"+room+"</td><td>"+department+"</td><td id=\""+number+"\">"+id+"</td><td>"+type+"</td><td><div class=\"btn-group\"><a class=\"btn btn-danger\" href=\"#\" onclick=\"choose(\'"+number+"\')\"><i class=\"icon_close_alt2\"></i></a></div></td></tr>";
-                $('#class_body').append(classinfo);
-                number = number+1;
-              }
+                        var classinfo = "";
+                        classinfo += "<tr><td>"+name+"</td><td id=\""+number+"\">"+id+"</td><td>"+time+"</td><td>"+room+"</td><td>"+department+"</td><td id=\""+num+"\">"+depart_id+"</td><td >"+type+"</td><td><div class=\"btn-group\"><a class=\"btn btn-danger\" href=\"#\" onclick=\"choose(\'"+number+"\',\'"+num+"\')\"><i class=\"icon_close_alt2\"></i></a></div></td></tr>";
+                        $('#class_body').append(classinfo);
+                        number = number+2;
+                        num = num+2;
+                    }
             )
 
         },
@@ -291,52 +288,33 @@
         }
     });
 
-function refresh(){
-  window.location.reload();//刷新当前页面.
-}
-    // var i ;
-    // for(i=1;i<number;i++){
-    //     $("#"+i+"a").click(function () {
-    //         var url1 = "/quitCourse";
-    //         var text = document.getElementById(i+"").innerHTML;
-    //         $.ajax({
-    //             url : url1,
-    //             type : "POST",
-    //             dataType : "json",
-    //             data:{"courseId": text},
-    //             success : function(Message){
-    //                 alert(Message);
-    //
-    //
-    //             },
-    //             error : function(){
-    //                 alert("Error");
-    //             }
-    //         })
-    //     });
-    //
-    // }
+    function refresh(){
+        window.location.reload();//刷新当前页面.
+    }
 
-    function choose(str){
-      var url1 = "/quitCourse";
-      var idnum = str;
-      var text = document.getElementById(idnum).innerHTML;
-      $.ajax({
-                  url : url1,
-                  type : "POST",
-                  dataType : "xml",
-                  data:{"courseId": text},
-                  success : function(Message){
-                      // alert(Message.message);
-                      alert($(Message).find("message").text());
-                      refresh();
+    function choose(str,str1){
+        var url1 = "/education/webservice/quitCourse";
+        var temp1 = str;
+        var temp2 = str1;
+        var text = document.getElementById(temp1).innerHTML;
+        var text1 = document.getElementById(temp2).innerHTML;
+        $.ajax({
+            url : url1,
+            type : "POST",
+            dataType : "xml",
+            data:{"courseId": text,'courseDept':text1},
+            success : function(Message){
+                // alert(Message.message);
+                //alert($(Message).find("message").text());
+                refresh();
 
-                  },
-                  error : function(){
-                      //alert("Error");
-                      refresh();
-                  }
-              })
+            },
+            error : function(Message){
+                console.log(JSON.stringify(Message));
+                alert("Error"+text+"??"+text1+"//"+Message);
+                refresh();
+            }
+        })
 
     }
 
