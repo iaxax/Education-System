@@ -28,23 +28,23 @@
 
 <div class="container">
 
-    <form class="login-form" action="/page/home">
+    <form class="login-form">
         <div class="login-wrap">
             <p class="login-img"><i class="icon_lock_alt"></i></p>
             <div class="input-group">
                 <span class="input-group-addon"><i class="icon_profile"></i></span>
-                <input type="text" class="form-control" placeholder="Username" autofocus>
+                <input type="text" class="form-control" placeholder="Username" autofocus id='name'>
             </div>
             <div class="input-group">
                 <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-                <input type="password" class="form-control" placeholder="Password">
+                <input type="password" class="form-control" placeholder="Password" id='pw'>
             </div>
             <label class="checkbox">
                 <input type="checkbox" value="remember-me"> Remember me
                 <span class="pull-right"> <a href="#"> Forgot Password?</a></span>
             </label>
-            <button id="log_in" class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
-            <button class="btn btn-info btn-lg btn-block" type="submit">Signup</button>
+            <button id="log_in" class="btn btn-primary btn-lg btn-block">Login</button>
+            <!--<button class="btn btn-info btn-lg btn-block">Signup</button>-->
         </div>
     </form>
 
@@ -53,22 +53,23 @@
 <script src="/static/js/jquery-1.8.3.min.js"></script>
 <script>
     $("#log_in").click(function () {
-        var name = document.getElementById("username").val();
-        var pass = document.getElementById("password").val();
+        var name = $('#name').val();
+        var pass = $('#pw').val();
         $.ajax({
-            url: "/education/login",
-            type: "POST",
-            dataType: "json",
-            data:{"username": name,"password":pass},
+            'url': "/education/login",
+            'method': 'post',
+            'data': {"username": name,"password":pass},
             success: function (Message) {
-                alert(Message);
-
-
+                if ($(Message).find('success').text() == 'False') {
+                    alert('账户与密码不匹配');
+                    return;
+                }
+                window.location = '/page/home';
             },
             error: function () {
-                alert("Error");
+                alert('fail to login');
             }
-        })
+        });
 
     });
 
